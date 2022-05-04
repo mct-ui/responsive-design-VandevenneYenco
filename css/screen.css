@@ -1,6 +1,27 @@
 /*------------------------------------*\
   #FONTS
 \*------------------------------------*/
+@font-face {
+    font-family: "HK Grotesk Web";
+    font-weight: 200;
+    src: url("../fonts/hkgrotesk-light-webfont.woff2") format("woff2"),
+    url("../fonts/hkgrotesk-light-webfont.woff") format("woff");
+}
+
+@font-face {
+    font-family: "HK Grotesk Web";
+    font-weight: 400;
+    src: url("../fonts/hkgrotesk-regular-webfont.woff2") format("woff2"),
+    url("../fonts/hkgrotesk-regular-webfont.woff") format("woff");
+}
+
+@font-face {
+    font-family: "HK Grotesk Web";
+    font-weight: 600;
+    src: url("../fonts/hkgrotesk-medium-webfont.woff2") format("woff2"),
+        url("../fonts/hkgrotesk-medium-webfont.woff") format("woff");
+}
+
 
 /*------------------------------------*\
   #GENERIC
@@ -16,10 +37,16 @@ html {
     font-size: 16px;
     line-height: 1.5;
     font-family: Helvetica, arial, sans-serif;
-    color: #111;
+    color: #202024;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+@media (min-width: 768px) {
+    html {
+        font-size: 20px;
+        line-height: 1.6;
+    }
 }
 
 *,
@@ -36,7 +63,7 @@ html {
  */
 
 ::selection {
-    background: #e85e00;
+    background:#5051DB;
     color: white;
     text-shadow: none;
 }
@@ -64,18 +91,21 @@ img {
 
 h1 {
     font-size: 36px;
+    font-weight: 200;
     line-height: 48px;
     margin: 0 0 24px;
 }
 
 h2 {
     font-size: 32px;
+    font-weight: 200;
     line-height: 40px;
     margin: 0 0 24px;
 }
 
 h3 {
     font-size: 26px;
+    font-weight: 200;
     line-height: 32px;
     margin: 0 0 24px;
 }
@@ -136,18 +166,18 @@ hr {
 }
 
 a {
-    color: RoyalBlue;
+    color: #5051DB;
     transition: all .1s ease-in-out;
 }
 
 a:visited,
 a:active {
-    color: BlueViolet;
+    color: #3E3EA8;
 }
 
 a:hover,
 a:focus {
-    color: Crimson;
+    color: #3E3EA8;
 }
 
 /*------------------------------------*\
@@ -177,6 +207,10 @@ a:focus {
         padding-left: 48px;
         padding-right: 48px;
     }
+    .o-row--md{
+        padding-top: 48px;
+        padding-bottom: 24px;
+    }
 
     .o-row--lg {
         padding-top: 72px;
@@ -194,7 +228,7 @@ a:focus {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    max-width: 90em; /* 90 * 16px = 1440px */
+    max-width: 70em; /* 90 * 16px = 1440px */
 }
 
 /*
@@ -215,6 +249,27 @@ a:focus {
     .o-layout__item {
         flex-basis: 100%;
     }
+.o-section {
+    
+}
+
+.o-section+.o-section {
+    margin-top: 24px;
+}
+
+@media (min-width: 768px) {
+
+    .o-section--lg+.o-section--lg,
+    .o-section--xl+.o-section--xl {
+        margin-top: 48px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .o-section--xl+.o-section--xl {
+        margin-top: 72px;
+    }
+}
 
 /* gutter modifiers, these affect o-layout__item too */
 
@@ -317,6 +372,65 @@ a:focus {
 /*------------------------------------*\
   #COMPONENTS
 \*------------------------------------*/
+.c-logo {
+    height: 32px;
+}
+
+.c-logo__symbol {
+    height: 100%;
+}
+
+.o-list {
+    list-style: none;
+    padding: 0;
+}
+
+.c-nav {
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.c-nav__link {
+    text-decoration: none;
+    font-weight: 400;
+    padding: 8px 0;
+}
+
+.c-nav--meta {
+    font-size: 16px;
+}
+
+.c-nav__link,
+.c-nav__link:visited,
+.c-nav__link:active {
+    color: #202024;
+}
+
+.c-nav__link--meta,
+.c-nav__link--meta:visited,
+.c-nav__link--meta:active {
+    color: #6C6C75;
+}
+
+.is-selected .c-nav__link,
+.c-nav__link:hover,
+.c-nav__link:focus {
+    color: #5051DB;
+}
+
+.c-header__nav {
+    display: none;
+}
+
+@media (min-width: 992px) {
+    .c-header {
+
+    }
+
+    .c-header__nav {
+        display: block;
+    }
+}
 
 /*------------------------------------*\
   #UTILITIES
@@ -327,7 +441,9 @@ a:focus {
     ---
     Utility classes to put specific max widths onto elements
 */
-
+.u-pt-clear{
+    padding-top: 0 !important;
+}
 .u-max-width-xs {
     max-width: 18em !important;
 }
@@ -481,6 +597,15 @@ a:focus {
     .u-5-of-6-bp2 {
         flex-basis: calc(100% / 6 * 5) !important;
     }
+    .c-nav__list{
+        flex-basis: auto;
+
+    }
+    .c-nav__link{
+        flex-basis: auto;
+
+    }
+
 }
 
 @media (min-width: 992px) {
@@ -593,6 +718,20 @@ a:focus {
     Inlined to avoid the additional HTTP request:
     http://www.phpied.com/delay-loading-your-print-css/
 */
+@media (min-width: 768px) {
+    .c-logo__symbol {
+        height: 40px;
+    }
+}
+@media (min-width: 768px) {
+    .c-nav__list {
+        flex-basis: auto !important;
+    }
+
+    .c-nav__link {
+        flex-basis: auto !important;
+    }
+}
 
 @media print {
     *,
